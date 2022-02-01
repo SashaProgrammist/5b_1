@@ -4,6 +4,8 @@
 
 #include "vector.h"
 
+// memory usage of vector
+
 vector createVector(size_t n){
     vector result;
     result.size = 0;
@@ -53,4 +55,14 @@ void deleteVector(vector *v){
     v->data = NULL;
     v->capacity = 0;
     v->size = 0;
+}
+
+// boolean functions
+
+bool isEmpty(vector *v){
+    return v->data == NULL;
+}
+
+bool isFull(vector *v){
+    return v->size == v->capacity;
 }
