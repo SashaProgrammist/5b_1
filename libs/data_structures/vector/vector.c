@@ -79,6 +79,11 @@ bool isFull(vector *v){
 //  the simplest interaction with the structure
 
 int getVectorValue(vector *v, size_t i){
+    if (v->size <= i){
+        fprintf(stderr, "IndexError: v[%d] is not exists", i);
+        exit(1);
+    }
+
     return v->data[i];
 }
 
@@ -105,7 +110,7 @@ void popBack(vector *v){
 
 int* atVector(vector *v, size_t index){
     if (v->size <= index){
-        fprintf(stderr, "IndexError: a[%d] is not exists", index);
+        fprintf(stderr, "IndexError: v[%d] is not exists", index);
         exit(1);
     }
 

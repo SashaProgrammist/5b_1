@@ -179,7 +179,9 @@ void test_isFull(){
     test_isFull_not();
 }
 
-void test_getVectorValue(){}
+void test_getVectorValue(){
+
+}
 
 void test_pushBack(){}
 
@@ -205,4 +207,6 @@ void test(){
     test_atVector();
     test_back();
     test_front();
+
+    printf("OK\n");
 }

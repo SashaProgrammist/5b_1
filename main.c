@@ -1,5 +1,5 @@
 #include "libs/data_structures/vector/vector.h"
-#include "libs/data_structures/vector/testVector.c"
+#include "libs/data_structures/vector/testVector.h"
 
 #include <stdint.h>
 

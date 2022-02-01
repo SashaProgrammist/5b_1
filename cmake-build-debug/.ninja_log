@@ -1,7 +1,9 @@
 # ninja log v5
-17	117	6654095574579236	CMakeFiles/git.dir/libs/data_structures/vector/vector.c.obj	acbd33fc20735566
-2	114	6654095574539257	CMakeFiles/git.dir/main.c.obj	df481e43dcf3c070
-118	256	6654095575908621	git.exe	bf6058ba1720c073
 48	951	6654467811969743	CMakeFiles/git.dir/libs/data_structures/vector/vector.c.obj	acbd33fc20735566
-2	951	6654467811979734	CMakeFiles/git.dir/main.c.obj	df481e43dcf3c070
+2	90	6654472793575387	CMakeFiles/git.dir/main.c.obj	df481e43dcf3c070
+90	248	6654472795117623	git.exe	5033bc93b685f7a3
 46	952	6654467811979734	CMakeFiles/git.dir/libs/data_structures/vector/testVector.c.obj	9159ea4c033f2402
+2	110	6654474480615011	CMakeFiles/git.dir/main.c.obj	df481e43dcf3c070
+110	266	6654474481984207	git.exe	5033bc93b685f7a3
+2	118	6654474922543030	CMakeFiles/git.dir/libs/data_structures/vector/testVector.c.obj	9159ea4c033f2402
+119	253	6654474923732349	git.exe	5033bc93b685f7a3
