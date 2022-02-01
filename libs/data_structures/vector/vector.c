@@ -23,8 +23,14 @@ vector createVector(size_t n){
     return result;
 }
 
-void reserve(vector *v, size_t newCapacity){
-    if (newCapacity == 0){
+void reserve(vector *v, size_t newCapacity) {
+    if (v->data == NULL) {
+        *v = createVector(newCapacity);
+
+        return;
+    }
+
+    if (newCapacity == 0) {
         deleteVector(v);
 
         return;
@@ -32,14 +38,15 @@ void reserve(vector *v, size_t newCapacity){
 
     void *new = realloc(v->data, newCapacity * sizeof(int));
 
-    if (new == NULL){
+    if (new == NULL) {
         fprintf(stderr, "bad alloc");
         exit(1);
     }
 
-    v->data = (int *)new;
+    v->data = (int *) new;
     if (v->size > newCapacity) v->size = newCapacity;
     v->capacity = newCapacity;
+
 }
 
 void clear(vector *v){
@@ -47,10 +54,12 @@ void clear(vector *v){
 }
 
 void shrinkToFit(vector *v){
-    v->data = realloc(v->data, v->size * sizeof(int)), v->capacity = v->size;
+    reserve(v, v->size);
 }
 
 void deleteVector(vector *v){
+    if (isEmpty(v)) return;
+
     free(v->data);
     v->data = NULL;
     v->capacity = 0;

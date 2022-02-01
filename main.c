@@ -1,10 +1,10 @@
 #include "libs/data_structures/vector/vector.h"
+#include "libs/data_structures/vector/testVector.c"
+
 #include <stdint.h>
 
 int main() {
-    vector v = createVector(0);
-
-    printf("%d", v.data);
+    test();
 
     return 0;
 }
