@@ -34,7 +34,7 @@ void reserve(vector *v, size_t newCapacity){
 
     if (new == NULL){
         fprintf(stderr, "bad alloc");
-        exit(2);
+        exit(1);
     }
 
     v->data = (int *)new;
@@ -65,4 +65,29 @@ bool isEmpty(vector *v){
 
 bool isFull(vector *v){
     return v->size == v->capacity;
+}
+
+//  the simplest interaction with the structure
+
+int getVectorValue(vector *v, size_t i){
+    return v->data[i];
+}
+
+void pushBack(vector *v, int x){
+    if (isEmpty(v))
+        *v = createVector(1);
+
+    if (isFull(v))
+        reserve(v, v->capacity * 2);
+
+    v->data[v->size++] = x;
+}
+
+void popBack(vector *v){
+    if (v->size == 0){
+        fprintf(stderr, "vector = NULL");
+        exit(1);
+    }
+
+    v->size--;
 }

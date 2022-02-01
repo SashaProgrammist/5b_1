@@ -34,4 +34,12 @@ bool isEmpty(vector *v);
 
 bool isFull(vector *v);
 
+//  the simplest interaction with the structure
+
+int getVectorValue(vector *v, size_t i);
+
+void pushBack(vector *v, int x);
+
+void popBack(vector *v);
+
 #endif //GIT_VECTOR_H
