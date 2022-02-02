@@ -1,0 +1,3 @@
+"F:\Program Files\JetBrains\apps\CLion\ch-0\213.6461.75\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\git.dir/objects.a
+"F:\Program Files\JetBrains\apps\CLion\ch-0\213.6461.75\bin\mingw\bin\ar.exe" qc CMakeFiles\git.dir/objects.a @CMakeFiles\git.dir\objects1.rsp
+"F:\Program Files\JetBrains\apps\CLion\ch-0\213.6461.75\bin\mingw\bin\gcc.exe" -g -Wl,--whole-archive CMakeFiles\git.dir/objects.a -Wl,--no-whole-archive -o git.exe -Wl,--out-implib,libgit.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\git.dir\linklibs.rsp

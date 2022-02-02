@@ -79,11 +79,6 @@ bool isFull(vector *v){
 //  the simplest interaction with the structure
 
 int getVectorValue(vector *v, size_t i){
-    if (v->size <= i){
-        fprintf(stderr, "IndexError: v[%d] is not exists", i);
-        exit(1);
-    }
-
     return v->data[i];
 }
 

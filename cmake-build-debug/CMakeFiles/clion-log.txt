@@ -1,4 +1,10 @@
-D:\Users\PC\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\213.6461.75\bin\cmake\win\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=D:/Users/PC/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/ninja/win/ninja.exe -G Ninja D:\test\git
+"F:\Program Files\JetBrains\apps\CLion\ch-0\213.6461.75\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" F:\program\5b\5b_test
+-- The C compiler identification is GNU 11.2.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: F:/Program Files/JetBrains/apps/CLion/ch-0/213.6461.75/bin/mingw/bin/gcc.exe - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
 -- Configuring done
 -- Generating done
--- Build files have been written to: D:/test/git/cmake-build-debug
+-- Build files have been written to: F:/program/5b/5b_test/cmake-build-debug
