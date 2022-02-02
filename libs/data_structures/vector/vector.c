@@ -113,6 +113,7 @@ int* atVector(vector *v, size_t index){
 }
 
 int* back(vector *v){
+    if (isEmpty(v)) return NULL;
     return v->data + v->size - 1;
 }
 

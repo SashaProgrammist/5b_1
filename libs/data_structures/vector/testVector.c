@@ -272,7 +272,7 @@ void test_atVector(){
     deleteVector(&v);
 }
 
-void test_back(){
+void test_back_standardWork(){
     vector v = createVector(5);
 
     for (int i = 1; i < 6; ++i) {
@@ -281,6 +281,17 @@ void test_back(){
     }
 
     deleteVector(&v);
+}
+
+void test_back_EmptyVector(){
+    vector v = createVector(0);
+
+    assert(back(&v) == NULL);
+}
+
+void test_back() {
+    test_back_standardWork();
+    test_back_EmptyVector();
 }
 
 void test_front(){
