@@ -5,6 +5,8 @@
 #ifndef TEST
 #define TEST
 
+#include "vector.h"
+
 void test();
 
 #endif

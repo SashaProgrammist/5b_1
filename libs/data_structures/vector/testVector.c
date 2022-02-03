@@ -2,8 +2,10 @@
 // Created by PC on 01.02.2022.
 //
 
-#include "vector.h"
+#include "testVector.h"
+
 #include <assert.h>
+#include <stdint.h>
 
 void test_createVector_createEmptyVector(){
     vector v = createVector(0);
@@ -14,7 +16,6 @@ void test_createVector_createEmptyVector(){
 
     deleteVector(&v);
 }
-
 void test_createVector_memoryAllocation(){
     vector v = createVector(3);
 
@@ -24,10 +25,19 @@ void test_createVector_memoryAllocation(){
 
     deleteVector(&v);
 }
+void test_createVector_badAlloc(){
+    vector v = createVector(SIZE_MAX);
 
+    assert(v.data == NULL);
+    assert(v.size == 0);
+    assert(v.capacity == 0);
+
+    deleteVector(&v);
+}
 void test_createVector(){
     test_createVector_createEmptyVector();
     test_createVector_memoryAllocation();
+    test_createVector_badAlloc();
 }
 
 void test_reserve_EmptyVector(){
@@ -41,7 +51,6 @@ void test_reserve_EmptyVector(){
 
     deleteVector(&v);
 }
-
 void test_reserve_EmptyNewVector(){
     vector v = createVector(10);
 
@@ -53,7 +62,6 @@ void test_reserve_EmptyNewVector(){
 
     deleteVector(&v);
 }
-
 void test_reserve_standardWork(){
     vector v = createVector(10);
 
@@ -67,11 +75,21 @@ void test_reserve_standardWork(){
 
     deleteVector(&v);
 }
+void test_reserve_badAlloc(){
+    vector v = createVector(3);
+    v.size = 2;
 
+    reserve(&v, SIZE_MAX);
+
+    assert(v.data == NULL);
+    assert(v.size == 0);
+    assert(v.capacity == 0);
+}
 void test_reserve(){
     test_reserve_EmptyVector();
     test_reserve_EmptyNewVector();
     test_reserve_standardWork();
+    test_reserve_badAlloc();
 }
 
 void test_clear(){
@@ -81,6 +99,8 @@ void test_clear(){
     clear(&v);
 
     assert(v.size == 0);
+
+    deleteVector(&v);
 }
 
 void test_shrinkToFit_standardWork(){
@@ -95,7 +115,6 @@ void test_shrinkToFit_standardWork(){
 
     deleteVector(&v);
 }
-
 void test_shrinkToFit_EmptyVector(){
     vector v = createVector(10);
 
@@ -107,7 +126,6 @@ void test_shrinkToFit_EmptyVector(){
 
     deleteVector(&v);
 }
-
 void test_shrinkToFit_FullVector(){
     vector v = createVector(10);
     v.size = 10;
@@ -120,14 +138,13 @@ void test_shrinkToFit_FullVector(){
 
     deleteVector(&v);
 }
-
 void test_shrinkToFit(){
     test_shrinkToFit_standardWork();
     test_shrinkToFit_EmptyVector();
     test_shrinkToFit_FullVector();
 }
 
-void test_deleteVector(){
+void test_deleteVector_standardWork(){
     vector v = createVector(7);
 
     deleteVector(&v);
@@ -135,6 +152,25 @@ void test_deleteVector(){
     assert(v.data == NULL);
     assert(v.size == 0);
     assert(v.capacity == 0);
+
+    deleteVector(&v);
+}
+void test_deleteVector_EmptyVector(){
+    vector v = createVector(0);
+    v.size = 12;
+    v.capacity = 12;
+
+    deleteVector(&v);
+
+    assert(v.data == NULL);
+    assert(v.size == 0);
+    assert(v.capacity == 0);
+
+    deleteVector(&v);
+}
+void test_deleteVector(){
+    test_deleteVector_standardWork();
+    test_deleteVector_EmptyVector();
 }
 
 void test_isEmpty_yes() {
@@ -142,53 +178,45 @@ void test_isEmpty_yes() {
 
     assert(isEmpty(&v) == true);
 }
-
 void test_isEmpty_not(){
     vector v = createVector(3);
 
     assert(isEmpty(&v) != true);
 }
-
 void test_isEmpty(){
     test_isEmpty_yes();
     test_isEmpty_not();
 }
 
 void test_isFull_yes(){
-    {
-        vector v = createVector(0);
+    for (int i = 0; i < 10; ++i) {
+        vector v = createVector(i);
+        v.size = i;
 
-        assert(isFull(&v) == true);
-    }
-    {
-        vector v = createVector(5);
-        v.size = 5;
+        assert(isFull(&v));
 
-        assert(isFull(&v) == true);
+        deleteVector(&v);
     }
 }
-
 void test_isFull_not(){
     vector v = createVector(3);
 
     assert(isFull(&v) != true);
 }
-
 void test_isFull(){
     test_isFull_yes();
     test_isFull_not();
 }
 
 void test_getVectorValue(){
-    vector v = createVector(3);
-    v.data[0] = 1;
-    v.data[1] = 4;
-    v.data[2] = 16;
-    v.size = 3;
+    int n = 3;
+    vector v = createVector(n);
+    for (int i = 0; i < n; ++i)
+        v.data[i] = i;
+    v.size = n;
 
-    assert(getVectorValue(&v, 0) == 1);
-    assert(getVectorValue(&v, 1) == 4);
-    assert(getVectorValue(&v, 2) == 16);
+    for (int i = 0; i < n; ++i)
+        assert(getVectorValue(&v, i) == i);
 
     deleteVector(&v);
 }
@@ -205,7 +233,6 @@ void test_pushBack_standardWork(){
 
     deleteVector(&v);
 }
-
 void test_pushBack_EmptyVector(){
     vector v = createVector(0);
 
@@ -223,7 +250,6 @@ void test_pushBack_EmptyVector(){
 
     deleteVector(&v);
 }
-
 void test_pushBack_FullVector(){
     vector v = createVector(5);
     v.size = 5;
@@ -240,7 +266,6 @@ void test_pushBack_FullVector(){
     assert(v.capacity == 40);
     v.size = 40;
 }
-
 void test_pushBack(){
     test_pushBack_standardWork();
     test_pushBack_EmptyVector();
@@ -257,19 +282,34 @@ void test_popBack(){
     popBack(&v);
     assert(v.size == 2);
 
+    assert(v.capacity == 5);
+
     deleteVector(&v);
 }
 
-void test_atVector(){
-    vector v = createVector(6);
-    v.size = 6;
+void test_atVector_standardWork(){
+    int n = 6;
+    vector v = createVector(n);
+    v.size = n;
 
-    assert(atVector(&v, 0) == v.data);
-    assert(atVector(&v, 1) == v.data + 1);
-    assert(atVector(&v, 2) == v.data + 2);
-    assert(atVector(&v, 3) == v.data + 3);
+    for (int i = 0; i < n; ++i) {
+        assert(atVector(&v, i) == v.data + i);
+    }
 
     deleteVector(&v);
+}
+void test_atVector_IndexError(){
+    vector v = createVector(4);
+    v.size = 4;
+
+    assert(atVector(&v, 3) == v.data + 3);
+    assert(atVector(&v, 4) == NULL);
+
+    deleteVector(&v);
+}
+void test_atVector(){
+    test_atVector_standardWork();
+    test_atVector_IndexError();
 }
 
 void test_back_standardWork(){
@@ -282,13 +322,11 @@ void test_back_standardWork(){
 
     deleteVector(&v);
 }
-
 void test_back_EmptyVector(){
     vector v = createVector(0);
 
     assert(back(&v) == NULL);
 }
-
 void test_back() {
     test_back_standardWork();
     test_back_EmptyVector();
@@ -296,7 +334,7 @@ void test_back() {
 
 void test_front(){
     for (int i = 0; i < 10; ++i) {
-        vector v = createVector(2);
+        vector v = createVector(i);
 
         assert(front(&v) == v.data);
 
@@ -305,6 +343,8 @@ void test_front(){
 }
 
 void test() {
+    setTestMod(true);
+
     test_createVector();
     printf("OK test_createVector\n");
     test_reserve();
@@ -330,6 +370,7 @@ void test() {
     test_back();
     printf("OK test_back\n");
     test_front();
+    printf("OK test_front\n");
 
     printf("OK\n");
 }

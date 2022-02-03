@@ -1,4 +1,4 @@
-# Install script for directory: F:/program/5b/5b_test
+# Install script for directory: D:/test/git
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -34,7 +34,7 @@ endif()
 
 # Set default install directory permissions.
 if(NOT DEFINED CMAKE_OBJDUMP)
-  set(CMAKE_OBJDUMP "F:/Program Files/JetBrains/apps/CLion/ch-0/213.6461.75/bin/mingw/bin/objdump.exe")
+  set(CMAKE_OBJDUMP "D:/Users/PC/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/213.6777.58/bin/mingw/bin/objdump.exe")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "F:/program/5b/5b_test/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "D:/test/git/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
