@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "F:/program/5b/5b_test/cmake-build-debug",
-		"source" : "F:/program/5b/5b_test"
+		"build" : "D:/test/git/cmake-build-debug",
+		"source" : "D:/test/git"
 	},
 	"version" : 
 	{

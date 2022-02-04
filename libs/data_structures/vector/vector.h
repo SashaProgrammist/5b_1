@@ -16,6 +16,12 @@ typedef struct vector {
     size_t capacity;   // вместимость вектора
 } vector;
 
+// test
+
+void setTestMod(bool testMod);
+
+//void setTestMod(bool testMod);
+
 // memory usage of vector
 
 vector createVector(size_t n);
